@@ -1,1 +1,2 @@
-# PerScholas-Capstone-Frontend
+# Per Scholas Captone Frontend
+
