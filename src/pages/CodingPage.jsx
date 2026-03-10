@@ -14,6 +14,7 @@ export default function CodingPage() {
   const [customTests, setCustomTests] = useState([]);
   const [newTest, setNewTest] = useState({ input: "", output: "" });
   const [feedback, setFeedback] = useState("");
+  const [testResults, setTestResults] = useState([]); // Store execution outputs
 
   // Load Problem & Initialize Timer
   useEffect(() => {
@@ -49,6 +50,8 @@ export default function CodingPage() {
         language: user.settings.default_language,
         customTestCases: customTests,
       });
+
+      setTestResults(res.data.results || []); // Save results to state
 
       if (res.data.submission.status === "failed") {
         setFeedback(`Failed ${res.data.submission.test_cases_passed}/${res.data.submission.test_cases_total} tests.`);
@@ -86,11 +89,14 @@ export default function CodingPage() {
         <div style={{ flex: 1 }}>
           <p>{problem.description}</p>
           <h3>Test Cases</h3>
-          <ul>
             {[...problem.test_cases, ...customTests].map((t, i) => (
-              <li key={i}>Input: {t.input} | Expected: {t.output}</li>
+            <div key={i} style={{ padding: "5px", borderBottom: "1px solid #444", color: testResults[i] ? (testResults[i].passed ? "#0f0" : "#f00") : "white" }}>
+              <strong>Input:</strong> {t.input}
+              <br />
+              <strong>Expected:</strong> {t.output}
+              {testResults[i] && <div><strong>Output:</strong> {String(testResults[i].actual)}</div>}
+            </div>
             ))}
-          </ul>
 
           <h4>Add Custom Test Case</h4>
           <input placeholder="Input (e.g. 1, 2)" onChange={(e) => setNewTest({ ...newTest, input: e.target.value })} />
@@ -118,7 +124,9 @@ export default function CodingPage() {
           <button onClick={handleSubmit} style={{ marginTop: "10px" }}>Run & Submit</button>
         </div>
       </div>
+      <div>
       {feedback && <pre style={{ background: "#333", padding: "10px" }}>{feedback}</pre>}
+      </div>
     </div>
   );
 }
