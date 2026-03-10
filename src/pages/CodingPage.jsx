@@ -1,27 +1,28 @@
-import { useState, useEffect, useContext, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Editor from "@monaco-editor/react";
 import { AuthContext } from "../context/AuthContext.jsx";
 
 export default function CodingPage() {
   const { id } = useParams();
-  const { user, token } = useContext(AuthContext);
-  const nav = useNavigate();
+  const { user } = useContext(AuthContext);
 
   const [problem, setProblem] = useState(null);
   const [code, setCode] = useState("");
   const [timeLeft, setTimeLeft] = useState(0);
+  const [customTests, setCustomTests] = useState([]);
+  const [newTest, setNewTest] = useState({ input: "", output: "" });
   const [feedback, setFeedback] = useState("");
-  const [status, setStatus] = useState("");
 
-  // Load Problem
+  // Load Problem & Initialize Timer
   useEffect(() => {
     async function fetchProblem() {
       try {
         const res = await axios.get(`http://localhost:3000/problems/${id}`);
         setProblem(res.data);
         setCode(res.data.starter_code);
+        // Initialize timer based on user settings
         setTimeLeft(user.settings.time_limit * 60);
       } catch (err) {
         console.error("Failed to load problem", err);
@@ -30,7 +31,7 @@ export default function CodingPage() {
     fetchProblem();
   }, [id, user.settings.time_limit]);
 
-  // Timer Logic
+  // Timer Countdown Logic
   useEffect(() => {
     if (timeLeft <= 0) return;
     const timer = setInterval(() => {
@@ -44,73 +45,80 @@ export default function CodingPage() {
       const res = await axios.post("http://localhost:3000/submissions", {
         user_id: user._id,
         problem_id: id,
-        code: code,
+        code,
         language: user.settings.default_language,
+        customTestCases: customTests,
       });
 
-      setStatus(res.data.submission.status);
-      
       if (res.data.submission.status === "failed") {
-        getFeedback(res.data.errorMessage);
+        setFeedback(`Failed ${res.data.submission.test_cases_passed}/${res.data.submission.test_cases_total} tests.`);
+        getAIHint(res.data.errorMessage);
       } else {
-        setFeedback("🎉 Great job! Solution passed!");
+        setFeedback("🎉 All tests passed!");
       }
-    } catch (err) {
-      console.error(err);
-    }
+    } catch (err) { console.error(err); }
   }
 
-  async function getFeedback(errorMsg) {
+  async function getAIHint(errorMsg) {
     try {
       const res = await axios.post("http://localhost:3000/feedback", {
         code,
         problem_description: problem.description,
-        error_message: errorMsg,
+        error_message: errorMsg
       });
-      setFeedback(res.data.feedback);
+      setFeedback((prev) => prev + `\n\nAI Hint: ${res.data.feedback}`);
     } catch (err) {
-      setFeedback("Could not fetch AI feedback.");
+      setFeedback((prev) => prev + "\n\nCould not fetch AI feedback.");
     }
   }
 
-  if (!problem) return <h1>Loading Problem...</h1>;
+  if (!problem) return <h1>Loading...</h1>;
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "80vh", width: "90%" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", padding: "10px" }}>
-        <h1>{problem.title} ({problem.difficulty})</h1>
+    <div style={{ width: "95%", margin: "auto" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <h1>{problem.title}</h1>
         <h2>Timer: {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}</h2>
       </div>
 
-      <div style={{ display: "flex", flex: 1, gap: "20px" }}>
-        <div style={{ flex: 1, padding: "10px", border: "1px solid #444" }}>
+      <div style={{ display: "flex", gap: "20px" }}>
+        {/* Left: Description & Tests */}
+        <div style={{ flex: 1 }}>
           <p>{problem.description}</p>
+          <h3>Test Cases</h3>
+          <ul>
+            {[...problem.test_cases, ...customTests].map((t, i) => (
+              <li key={i}>Input: {t.input} | Expected: {t.output}</li>
+            ))}
+          </ul>
+
+          <h4>Add Custom Test Case</h4>
+          <input placeholder="Input (e.g. 1, 2)" onChange={(e) => setNewTest({ ...newTest, input: e.target.value })} />
+          <input placeholder="Output (e.g. 3)" onChange={(e) => setNewTest({ ...newTest, output: e.target.value })} />
+          <button onClick={() => { setCustomTests([...customTests, newTest]); }}>Add</button>
         </div>
-        
+
+        {/* Right: Editor */}
         <div style={{ flex: 2 }}>
           <Editor
-            height="50vh"
-            theme={user.settings.dark_mode ? "vs-dark" : "light"}
-            language={user.settings.default_language}
+            height="400px"
+            theme="vs-dark"
             value={code}
-            onChange={(val) => setCode(val)}
-          />
-          <button 
-            onClick={handleSubmit} 
-            disabled={timeLeft === 0}
-            style={{ marginTop: "10px", padding: "10px 20px" }}
-          >
-            {timeLeft === 0 ? "Time Expired" : "Submit Solution"}
-          </button>
+            onChange={setCode}
+            options={{
+              minimap: {
+                enabled: false
+              },
+              // Optional: Hide scrollbars too
+              scrollbar: {
+                vertical: 'hidden',
+                horizontal: 'hidden'
+              }
+            }} />
+          <button onClick={handleSubmit} style={{ marginTop: "10px" }}>Run & Submit</button>
         </div>
       </div>
-
-      {feedback && (
-        <div style={{ marginTop: "20px", padding: "15px", border: "2px solid #646cff" }}>
-          <h3>AI Feedback:</h3>
-          <p>{feedback}</p>
-        </div>
-      )}
+      {feedback && <pre style={{ background: "#333", padding: "10px" }}>{feedback}</pre>}
     </div>
   );
 }
