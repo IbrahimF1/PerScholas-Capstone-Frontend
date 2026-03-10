@@ -19,8 +19,8 @@ export default function NavBar() {
   }
 
   return (
-    <nav>
-      <h2>AlgoPrep</h2>
+    <nav style={{ display: 'flex', alignItems: 'center' }}>
+      <h2>Project Assist</h2>
       <div>
         <NavLink to="/problems"><button style={{ marginRight: '10px' }}>Problems</button></NavLink>
         {user ? (
