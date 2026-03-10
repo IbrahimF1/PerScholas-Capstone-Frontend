@@ -1,0 +1,19 @@
+.login-container {
+  text-align: center;
+  width: 300px;
+  margin: 50px auto;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.login-form input {
+  width: 90%;
+  margin-bottom: 10px;
+}
+
+.toggle-button {
+  font-size: 0.8rem;
+}

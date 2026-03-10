@@ -9,9 +9,6 @@ import './App.css'
 /*
 TODO:
  - Reduce break tag usage
- - Separate out the CSS styling to their own stylsheets instead of inline
- - Display test cases
- - Display user stats
  - Improve styling
  - 
 */

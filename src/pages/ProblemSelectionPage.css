@@ -1,0 +1,13 @@
+.problem-selection {
+  text-align: center;
+}
+
+.problem-section h2 {
+  margin: 20px 0 10px 0;
+}
+
+.problem-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}

@@ -1,0 +1,57 @@
+.coding-page {
+  width: 95%;
+  margin: auto;
+}
+
+.coding-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coding-content {
+  display: flex;
+  gap: 20px;
+}
+
+.problem-description {
+  flex: 1;
+}
+
+.test-case {
+  padding: 5px;
+  border-bottom: 1px solid #444;
+}
+
+.test-case.passed {
+  color: #0f0;
+}
+
+.test-case.failed {
+  color: #f00;
+}
+
+.test-case.default {
+  color: white;
+}
+
+.editor-container {
+  flex: 2;
+}
+
+.submit-button {
+  margin-top: 10px;
+}
+
+.feedback-container {
+  margin-top: 20px;
+}
+
+.feedback {
+  background: #333;
+  padding: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: auto;
+  max-width: 100%;
+}

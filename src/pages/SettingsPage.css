@@ -1,0 +1,23 @@
+.settings-page {
+  max-width: 20rem;
+}
+
+.stats-container {
+  padding: 20px;
+  border: 1px solid #646cff;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  background-color: #1a1a1a;
+}
+
+.settings-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.settings-form input[type="number"],
+.settings-form select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}

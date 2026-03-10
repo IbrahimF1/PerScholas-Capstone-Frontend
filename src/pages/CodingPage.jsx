@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Editor from "@monaco-editor/react";
 import { AuthContext } from "../context/AuthContext.jsx";
+import "./CodingPage.css";
 
 export default function CodingPage() {
   const { id } = useParams();
@@ -78,19 +79,19 @@ export default function CodingPage() {
   if (!problem) return <h1>Loading...</h1>;
 
   return (
-    <div style={{ width: "95%", margin: "auto" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+    <div className="coding-page">
+      <div className="coding-header">
         <h1>{problem.title}</h1>
         <h2>Timer: {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}</h2>
       </div>
 
-      <div style={{ display: "flex", gap: "20px" }}>
+      <div className="coding-content">
         {/* Left: Description & Tests */}
-        <div style={{ flex: 1 }}>
+        <div className="problem-description">
           <p>{problem.description}</p>
           <h3>Test Cases</h3>
             {[...problem.test_cases, ...customTests].map((t, i) => (
-            <div key={i} style={{ padding: "5px", borderBottom: "1px solid #444", color: testResults[i] ? (testResults[i].passed ? "#0f0" : "#f00") : "white" }}>
+            <div key={i} className={`test-case ${testResults[i] ? (testResults[i].passed ? 'passed' : 'failed') : 'default'}`}>
               <strong>Input:</strong> {t.input}
               <br />
               <strong>Expected:</strong> {t.output}
@@ -105,7 +106,7 @@ export default function CodingPage() {
         </div>
 
         {/* Right: Editor */}
-        <div style={{ flex: 2 }}>
+        <div className="editor-container">
           <Editor
             height="400px"
             theme="vs-dark"
@@ -121,11 +122,11 @@ export default function CodingPage() {
                 horizontal: 'hidden'
               }
             }} />
-          <button onClick={handleSubmit} style={{ marginTop: "10px" }}>Run & Submit</button>
+          <button onClick={handleSubmit} className="submit-button">Run & Submit</button>
         </div>
       </div>
-      <div>
-      {feedback && <pre style={{ background: "#333", padding: "10px" }}>{feedback}</pre>}
+      <div className="feedback-container">
+      {feedback && <pre className="feedback">{feedback}</pre>}
       </div>
     </div>
   );

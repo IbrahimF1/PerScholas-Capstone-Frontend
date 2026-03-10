@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./ProblemSelectionPage.css";
 
 export default function ProblemSelectionPage() {
   const [problems, setProblems] = useState([]);
@@ -21,12 +22,12 @@ export default function ProblemSelectionPage() {
   const difficultyLevels = ["Easy", "Medium", "Hard"];
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div className="problem-selection">
       <h1>Problem Selection</h1>
       {difficultyLevels.map((level) => (
-        <section key={level}>
+        <section key={level} className="problem-section">
           <h2>{level}</h2>
-          <div style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
+          <div className="problem-buttons">
             {problems
               .filter((p) => p.difficulty === level)
               .map((p) => (

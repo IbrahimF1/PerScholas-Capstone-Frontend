@@ -1,0 +1,17 @@
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+.navbar h2 {
+  margin-right: 20px;
+}
+
+.navbar-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-button {
+  margin-right: 10px;
+}

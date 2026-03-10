@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext.jsx";
+import "./LoginPage.css";
 
 export default function LoginPage() {
     const { setToken, setUser } = useContext(AuthContext);
@@ -47,9 +48,9 @@ export default function LoginPage() {
     }
 
     return (
-        <fieldset style={{ textAlign: "center", width: "300px", marginTop: "50px" }}>
+        <fieldset className="login-container">
             <legend>{isLogin ? "Login" : "Register"}</legend>
-            <form onSubmit={handleSubmit}>
+            <form className="login-form" onSubmit={handleSubmit}>
                 {!isLogin && (
                     <>
                         <label>
@@ -93,7 +94,7 @@ export default function LoginPage() {
                 <button type="submit">{isLogin ? "Login" : "Register"}</button>
             </form>
             <br />
-            <button onClick={() => setIsLogin(!isLogin)} style={{ fontSize: "0.8rem" }}>
+            <button onClick={() => setIsLogin(!isLogin)} className="toggle-button">
                 {isLogin ? "Need an account? Register" : "Have an account? Login"}
             </button>
         </fieldset>

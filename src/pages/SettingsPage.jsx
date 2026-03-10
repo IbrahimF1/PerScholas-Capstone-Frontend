@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext.jsx";
+import "./SettingsPage.css";
 
 export default function SettingsPage() {
   const { user, setUser } = useContext(AuthContext);
@@ -36,23 +37,17 @@ export default function SettingsPage() {
   }
 
   return (
-    <div style={{ marginTop: "50px", maxWidth: "400px", margin: "auto" }}>
+    <div className="settings-page">
       <h1>Settings</h1>
       
       {/* User Stats Section */}
-      <div style={{ 
-        padding: "20px", 
-        border: "1px solid #646cff", 
-        borderRadius: "8px", 
-        marginBottom: "30px",
-        backgroundColor: "#1a1a1a"
-      }}>
+      <div className="stats-container">
         <h2>Your Statistics</h2>
         <p><strong>Problems Attempted:</strong> {stats.attempted}</p>
         <p><strong>Problems Solved:</strong> {stats.solved}</p>
       </div>
 
-      <form onSubmit={handleSave}>
+      <form className="settings-form" onSubmit={handleSave}>
         <h2>Preferences</h2>
         <label>Time Limit (minutes): </label>
         <input 

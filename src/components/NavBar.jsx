@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext.jsx";
+import "./NavBar.css";
 
 export default function NavBar() {
   const { user, token, setToken, setUser } = useContext(AuthContext);
@@ -19,13 +20,13 @@ export default function NavBar() {
   }
 
   return (
-    <nav style={{ display: 'flex', alignItems: 'center' }}>
+    <nav className="navbar">
       <h2>Project Assist</h2>
-      <div>
-        <NavLink to="/problems"><button style={{ marginRight: '10px' }}>Problems</button></NavLink>
+      <div className="navbar-buttons">
+        <NavLink to="/problems"><button className="navbar-button">Problems</button></NavLink>
         {user ? (
           <>
-            <NavLink to="/settings"><button style={{ marginRight: '10px' }}>Settings</button></NavLink>
+            <NavLink to="/settings"><button className="navbar-button">Settings</button></NavLink>
             <button onClick={handleLogout}>Logout ({user.username})</button>
           </>
         ) : (
