@@ -1,5 +1,5 @@
 .settings-page {
-  max-width: 20rem;
+  min-width: 30rem;
 }
 
 .stats-container {
@@ -8,6 +8,7 @@
   border-radius: 8px;
   margin-bottom: 30px;
   background-color: #1a1a1a;
+  text-align: center;
 }
 
 .settings-form label {
@@ -17,7 +18,7 @@
 
 .settings-form input[type="number"],
 .settings-form select {
-  width: 100%;
+  width: 25%;
   padding: 8px;
   margin-bottom: 10px;
 }

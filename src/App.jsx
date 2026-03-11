@@ -10,7 +10,8 @@ import './App.css'
 TODO:
  - Reduce break tag usage
  - Improve styling
- - 
+ - Add markdown rendering for Coding Page
+ - Use bootstrap collapsable navbar with all problems listed in Problems dropdown for quick access
 */
 
 function App() {
