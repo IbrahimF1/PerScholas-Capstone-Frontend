@@ -130,7 +130,7 @@ export default function CodingPage() {
         </div>
       </div>
       <div className="feedback-container">
-      {feedback && <pre className="feedback">{feedback}</pre>}
+      {feedback && <div className="feedback" dangerouslySetInnerHTML={{ __html: marked.parse(feedback) }}></div>}
       </div>
     </div>
   );
