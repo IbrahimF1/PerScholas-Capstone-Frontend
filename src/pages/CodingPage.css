@@ -55,3 +55,27 @@
   overflow: auto;
   max-width: 100%;
 }
+
+.difficulty-label {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 2px solid;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.difficulty-label.easy {
+  border-color: #4caf50;
+  color: #4caf50;
+}
+
+.difficulty-label.medium {
+  border-color: #ffeb3b;
+  color: #ffeb3b;
+}
+
+.difficulty-label.hard {
+  border-color: #f44336;
+  color: #f44336;
+}

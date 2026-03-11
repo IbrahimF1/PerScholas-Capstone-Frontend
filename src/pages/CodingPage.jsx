@@ -81,8 +81,10 @@ export default function CodingPage() {
   return (
     <div className="coding-page">
       <div className="coding-header">
-        <h1>{problem.title}</h1>
-        <p className="difficulty-label">{problem.difficulty}</p>
+        <div>
+          <h1>{problem.title}</h1>
+          <p className={`difficulty-label ${problem.difficulty.toLowerCase()}`}>{problem.difficulty}</p>
+        </div>
         <h2>Timer: {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}</h2>
       </div>
 
