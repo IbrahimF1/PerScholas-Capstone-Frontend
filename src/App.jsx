@@ -8,9 +8,9 @@ import './App.css'
 
 /*
 TODO:
+ - Add markdown rendering for problem display and AI feedback Coding Page
  - Reduce break tag usage
  - Improve styling
- - Add markdown rendering for Coding Page
  - Use bootstrap collapsable navbar with all problems listed in Problems dropdown for quick access
 */
 

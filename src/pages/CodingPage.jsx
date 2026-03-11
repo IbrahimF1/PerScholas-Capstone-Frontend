@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Editor from "@monaco-editor/react";
+import { marked } from "marked";
 import { AuthContext } from "../context/AuthContext.jsx";
 import "./CodingPage.css";
 
@@ -91,7 +92,7 @@ export default function CodingPage() {
       <div className="coding-content">
         {/* Left: Description & Tests */}
         <div className="problem-description">
-          <p>{problem.description}</p>
+          <div dangerouslySetInnerHTML={{ __html: marked.parse(problem.description) }}></div>
           <h3>Test Cases</h3>
             {[...problem.test_cases, ...customTests].map((t, i) => (
             <div key={i} className={`test-case ${testResults[i] ? (testResults[i].passed ? 'passed' : 'failed') : 'default'}`}>

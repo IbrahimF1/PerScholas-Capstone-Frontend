@@ -12,6 +12,7 @@
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",
     "axios": "^1.13.6",
+    "marked": "^17.0.4",
     "monaco-editor": "^0.55.1",
     "react": "^19.2.0",
     "react-cookie": "^8.0.1",
