@@ -11,7 +11,7 @@
 
 .coding-content {
   display: flex;
-  gap: 20px;
+  gap: 1.25rem;
 }
 
 .problem-description {
@@ -36,15 +36,15 @@
 
 .problem-description code {
   background: #333;
-  padding: 2px 6px;
-  border-radius: 3px;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.1875rem;
   font-family: monospace;
 }
 
 .problem-description pre {
   background: #333;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 0.625rem;
+  border-radius: 0.3125rem;
   overflow-x: auto;
   margin-bottom: 1em;
 }
@@ -56,7 +56,7 @@
 
 .problem-description ul,
 .problem-description ol {
-  margin-left: 20px;
+  margin-left: 1.25rem;
   margin-bottom: 1em;
 }
 
@@ -65,8 +65,8 @@
 }
 
 .problem-description blockquote {
-  border-left: 4px solid #666;
-  padding-left: 10px;
+  border-left: 0.25rem solid #666;
+  padding-left: 0.625rem;
   margin: 1em 0;
   color: #aaa;
 }
@@ -85,7 +85,7 @@
 .problem-description th,
 .problem-description td {
   border: 1px solid #444;
-  padding: 8px;
+  padding: 0.5rem;
   text-align: left;
 }
 
@@ -100,7 +100,7 @@
 }
 
 .test-case {
-  padding: 5px;
+  padding: 0.3125rem;
   border-bottom: 1px solid #444;
 }
 
@@ -121,20 +121,21 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  gap: 0.625rem;
 }
 
 .submit-button {
-  margin-top: 10px;
+  margin: 0;
   width: 9rem;
 }
 
 .feedback-container {
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 
 .feedback {
   background: #333;
-  padding: 10px;
+  padding: 0.625rem;
   overflow: auto;
   max-width: 100%;
 }
@@ -157,15 +158,15 @@
 
 .feedback code {
   background: #444;
-  padding: 2px 6px;
-  border-radius: 3px;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.1875rem;
   font-family: monospace;
 }
 
 .feedback pre {
   background: #444;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 0.625rem;
+  border-radius: 0.3125rem;
   overflow-x: auto;
   margin-bottom: 1em;
 }
@@ -177,7 +178,7 @@
 
 .feedback ul,
 .feedback ol {
-  margin-left: 20px;
+  margin-left: 1.25rem;
   margin-bottom: 1em;
 }
 
@@ -186,8 +187,8 @@
 }
 
 .feedback blockquote {
-  border-left: 4px solid #666;
-  padding-left: 10px;
+  border-left: 0.25rem solid #666;
+  padding-left: 0.625rem;
   margin: 1em 0;
   color: #aaa;
 }
@@ -206,7 +207,7 @@
 .feedback th,
 .feedback td {
   border: 1px solid #444;
-  padding: 8px;
+  padding: 0.5rem;
   text-align: left;
 }
 
@@ -222,11 +223,11 @@
 
 .difficulty-label {
   display: inline-block;
-  padding: 4px 12px;
-  border: 2px solid;
-  border-radius: 4px;
+  padding: 0.25rem 0.75rem;
+  border: 0.125rem solid;
+  border-radius: 0.25rem;
   font-weight: bold;
-  margin-top: 5px;
+  margin-top: 0.3125rem;
 }
 
 .difficulty-label.easy {

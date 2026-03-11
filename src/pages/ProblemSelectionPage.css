@@ -5,8 +5,8 @@
 .problem-sections-container {
   display: flex;
   justify-content: center;
-  gap: 40px;
-  margin-top: 30px;
+  gap: 2.5rem;
+  margin-top: 1.875rem;
 }
 
 .problem-section {
@@ -14,8 +14,8 @@
   flex-direction: column;
   align-items: center;
   min-width: 25rem;
-  padding: 20px;
-  border-radius: 8px;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
 }
 
 .problem-section-easy {
@@ -31,13 +31,13 @@
 }
 
 .problem-section h2 {
-  margin: 0 0 20px 0;
+  margin: 0 0 1.25rem 0;
 }
 
 .problem-buttons {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.625rem;
   width: 100%;
 }
 

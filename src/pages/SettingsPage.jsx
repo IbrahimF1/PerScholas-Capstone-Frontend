@@ -67,12 +67,21 @@ export default function SettingsPage() {
         </select>
         <br /><br />
 
-        <label>Dark Mode: </label>
-        <input 
-          type="checkbox" 
-          checked={settings.dark_mode}
-          onChange={(e) => setSettings({...settings, dark_mode: e.target.checked})}
-        />
+        <div className="toggle-container">
+          <span className="toggle-label">Theme:</span>
+          <label className="toggle-switch">
+            <input 
+              type="checkbox" 
+              checked={settings.dark_mode}
+              onChange={(e) => setSettings({...settings, dark_mode: e.target.checked})}
+            />
+            <span className="toggle-slider">
+              <span className="toggle-icon">☀️</span>
+              <span className="toggle-icon">🌙</span>
+            </span>
+          </label>
+          <span className="toggle-label">{settings.dark_mode ? 'Dark' : 'Light'}</span>
+        </div>
         <br /><br />
         
         <button type="submit">Save Preferences</button>
