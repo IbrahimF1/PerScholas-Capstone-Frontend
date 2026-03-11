@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useLocation } from "react-router-dom"
 import NavBar from "./components/NavBar.jsx";
 import LoginPage from './pages/LoginPage.jsx';
 import ProblemSelectionPage from "./pages/ProblemSelectionPage.jsx";
@@ -8,16 +8,18 @@ import './App.css'
 
 /*
 TODO:
- - Add markdown rendering for problem display and AI feedback Coding Page
- - Reduce break tag usage
- - Improve styling
- - Use bootstrap collapsable navbar with all problems listed in Problems dropdown for quick access
+  - Add markdown rendering for problem display and AI feedback Coding Page
+  - Reduce break tag usage
+  - Improve styling
+  - Use bootstrap collapsable navbar with all problems listed in Problems dropdown for quick access
 */
 
 function App() {
+  const location = useLocation();
+
   return (
     <>
-      <NavBar />
+      {location.pathname !== "/" && <NavBar />}
 
       <div className="page-container">
         <Routes>
