@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext.jsx";
+import StarryBackground from "../components/StarryBackground.jsx";
 import "./LoginPage.css";
 
 export default function LoginPage() {
@@ -48,55 +49,59 @@ export default function LoginPage() {
     }
 
     return (
-        <fieldset className="login-container">
-            <legend>{isLogin ? "Login" : "Register"}</legend>
-            <form className="login-form" onSubmit={handleSubmit}>
-                {!isLogin && (
-                    <>
-                        <label>
-                            Username:
-                            <br />
-                            <input
-                                type="text"
-                                name="username"
-                                value={formData.username}
-                                onChange={handleChange}
-                                required={!isLogin}
-                            />
-                        </label>
-                        <br /><br />
-                    </  >
-                )}
-                <label>
-                    Email:
-                    <br />
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-                <br /><br />
-                <label>
-                    Password:
-                    <br />
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-                <br /><br />
-                <button type="submit">{isLogin ? "Login" : "Register"}</button>
-            </form>
-            <br />
-            <button onClick={() => setIsLogin(!isLogin)} className="toggle-button">
-                {isLogin ? "Need an account? Register" : "Have an account? Login"}
-            </button>
-        </fieldset>
+        <>
+            <StarryBackground />
+            
+            <fieldset className="login-container">
+                <legend>{isLogin ? "Login" : "Register"}</legend>
+                <form className="login-form" onSubmit={handleSubmit}>
+                    {!isLogin && (
+                        <>
+                            <label>
+                                Username:
+                                <br />
+                                <input
+                                    type="text"
+                                    name="username"
+                                    value={formData.username}
+                                    onChange={handleChange}
+                                    required={!isLogin}
+                                />
+                            </label>
+                            <br /><br />
+                        </>
+                    )}
+                    <label>
+                        Email:
+                        <br />
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </label>
+                    <br /><br />
+                    <label>
+                        Password:
+                        <br />
+                        <input
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                        />
+                    </label>
+                    <br /><br />
+                    <button type="submit">{isLogin ? "Login" : "Register"}</button>
+                </form>
+                <br />
+                <button onClick={() => setIsLogin(!isLogin)} className="toggle-button">
+                    {isLogin ? "Need an account? Register" : "Have an account? Login"}
+                </button>
+            </fieldset>
+        </>
     );
 }

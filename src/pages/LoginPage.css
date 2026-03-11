@@ -2,6 +2,14 @@
   text-align: center;
   width: 18.75rem;
   margin: 3.125rem auto;
+  
+  /* Added for visibility over the stars */
+  position: relative;
+  z-index: 1;
+  background-color: rgba(36, 36, 36, 0.85); /* Matches your dark theme perfectly */
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #444; 
 }
 
 .login-form label {
@@ -12,7 +20,7 @@
 .login-form input {
   width: 90%;
   margin-bottom: 0.625rem;
-}
+} 
 
 .toggle-button {
   font-size: 0.8rem;
