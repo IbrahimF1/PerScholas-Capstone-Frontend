@@ -1,15 +1,18 @@
 import { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext.jsx";
 import "./SettingsPage.css";
 
 export default function SettingsPage() {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser, setToken } = useContext(AuthContext);
   const [settings, setSettings] = useState(user.settings);
   const [stats, setStats] = useState({ 
     attempted: user.problems_attempted, 
     solved: user.problems_solved 
   });
+  
+  const nav = useNavigate();
 
   // Fetch fresh user data on mount to ensure stats are accurate
   useEffect(() => {
@@ -33,6 +36,28 @@ export default function SettingsPage() {
       alert("Settings saved!");
     } catch (err) {
       console.error(err);
+    }
+  }
+
+  async function handleDeleteAccount() {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete your account? This action is permanent and cannot be undone."
+    );
+    
+    if (!confirmDelete) return;
+
+    try {
+      await axios.delete(`http://localhost:3000/user/profile/${user._id}`);
+      
+      // Clear global auth states
+      setUser(null);
+      setToken(null);
+      
+      alert("Account successfully deleted.");
+      nav("/");
+    } catch (err) {
+      console.error("Failed to delete account", err);
+      alert("An error occurred while trying to delete your account.");
     }
   }
 
@@ -86,6 +111,13 @@ export default function SettingsPage() {
         
         <button type="submit">Save Preferences</button>
       </form>
+
+      <div className="delete-account-container">
+        <p>Once you delete your account, there is no going back.</p>
+        <button className="delete-btn" onClick={handleDeleteAccount}>
+          Delete Account
+        </button>
+      </div>
     </div>
   );
 }

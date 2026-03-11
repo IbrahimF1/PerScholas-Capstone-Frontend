@@ -1,27 +1,104 @@
-.login-container {
-  text-align: center;
-  width: 18.75rem;
-  margin: 3.125rem auto;
-  
-  /* Added for visibility over the stars */
+.login-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 1rem;
+}
+
+.login-card {
   position: relative;
   z-index: 1;
-  background-color: rgba(36, 36, 36, 0.85); /* Matches your dark theme perfectly */
-  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  background: rgba(24, 24, 27, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  text-align: left;
+}
+
+.login-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.login-header h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.75rem;
+  color: #ffffff;
+}
+
+.login-header p {
+  margin: 0;
+  color: #a1a1aa;
+  font-size: 0.9rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #d4d4d8;
+}
+
+.form-group input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.primary-btn {
+  width: 100%;
+  background-color: #6366f1;
+  color: white;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
   border-radius: 8px;
-  border: 1px solid #444; 
 }
 
-.login-form label {
-  display: block;
-  margin-bottom: 0.3125rem;
+.primary-btn:hover {
+  background-color: #4f46e5;
+  transform: translateY(-1px);
 }
 
-.login-form input {
-  width: 90%;
-  margin-bottom: 0.625rem;
-} 
+.login-footer {
+  margin-top: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.login-footer p {
+  margin: 0;
+  color: #a1a1aa;
+  font-size: 0.9rem;
+}
 
 .toggle-button {
-  font-size: 0.8rem;
+  background: none;
+  border: none;
+  color: #818cf8;
+  padding: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.toggle-button:hover {
+  background: none;
+  color: #6366f1;
+  text-decoration: underline;
 }
