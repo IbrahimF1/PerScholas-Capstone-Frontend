@@ -112,7 +112,8 @@ export default function CodingPage() {
         {/* Right: Editor */}
         <div className="editor-container">
           <Editor
-            height="400px"
+            height="70%"
+            width="80%"
             theme="vs-dark"
             value={code}
             onChange={setCode}
