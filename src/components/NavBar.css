@@ -4,6 +4,13 @@
   gap: 1.25rem;
 }
 
+/* Added to structure Logo + Text */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .navbar h2 {
   margin: 0;
 }

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext.jsx";
+import ShootingStarsLogo from "./ShootingStarsLogo.jsx";
 import "./NavBar.css";
 
 export default function NavBar() {
@@ -21,7 +22,10 @@ export default function NavBar() {
 
   return (
     <nav className="navbar">
-      <h2>Project Assist</h2>
+      <div className="navbar-brand">
+        <ShootingStarsLogo />
+        <h2>Project Assist</h2>
+      </div>
       <div className="navbar-buttons">
         <NavLink to="/problems"><button className="navbar-button">Problems</button></NavLink>
         {user ? (
