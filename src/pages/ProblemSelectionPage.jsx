@@ -24,20 +24,22 @@ export default function ProblemSelectionPage() {
   return (
     <div className="problem-selection">
       <h1>Problem Selection</h1>
-      {difficultyLevels.map((level) => (
-        <section key={level} className="problem-section">
-          <h2>{level}</h2>
-          <div className="problem-buttons">
-            {problems
-              .filter((p) => p.difficulty === level)
-              .map((p) => (
-                <button key={p._id} onClick={() => nav(`/coding/${p._id}`)}>
-                  {p.title}
-                </button>
-              ))}
+      <div className="problem-sections-container">
+        {difficultyLevels.map((level) => (
+          <div key={level} className={`problem-section problem-section-${level.toLowerCase()}`}>
+            <h2>{level}</h2>
+            <div className="problem-buttons">
+              {problems
+                .filter((p) => p.difficulty === level)
+                .map((p) => (
+                  <button key={p._id} onClick={() => nav(`/coding/${p._id}`)}>
+                    {p.title}
+                  </button>
+                ))}
+            </div>
           </div>
-        </section>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
